@@ -1,4 +1,4 @@
-const API_URL = "stock-8jpa4ovjd-lidercoms-projects.vercel.app/api"; // tu backend en Node.js
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getProducts = async () => {
   const res = await fetch(`${API_URL}/productos`);
