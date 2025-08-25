@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:4000/api"; // tu backend en Node.js
+const API_URL = "stock-8jpa4ovjd-lidercoms-projects.vercel.app/api"; // tu backend en Node.js
 
 export const getProducts = async () => {
   const res = await fetch(`${API_URL}/productos`);
