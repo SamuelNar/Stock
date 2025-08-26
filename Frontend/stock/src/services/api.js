@@ -1,5 +1,5 @@
 const API_URL = import.meta.env.VITE_API_URL;
-
+import { supabase } from "../../supabase";
 export const getProducts = async () => {
   const res = await fetch(`${API_URL}/productos`);
   return res.json();
@@ -36,3 +36,24 @@ export const getGeneralBalance = async () => {
   return res.json();
 };
 
+export const loginUser = async (username, password) => {
+  // convertimos el username en email
+  const email = `${username}@app.com`;  
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) throw error;
+  return data.user;
+};
+
+export const logoutUser = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw error;
+};
+
+export const getCurrentUser = async () => {
+  const { data } = await supabase.auth.getSession();
+  return data.session?.user || null;
+};
